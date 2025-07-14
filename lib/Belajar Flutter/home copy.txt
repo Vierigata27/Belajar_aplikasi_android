@@ -1,0 +1,119 @@
+import 'package:eva_icons_flutter/eva_icons_flutter.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
+class Homepage extends StatelessWidget {
+  const Homepage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // --- Appbar ---
+      appBar:AppBar(
+      title: const Text('KeuanganKu'),
+      leading: const Icon(Icons.home),
+      backgroundColor: Colors.brown,
+      foregroundColor: Colors.white,
+    ),
+    // --- body ---
+    body: SingleChildScrollView(
+      child: Column(
+        children: [
+          GestureDetector(
+            onTap: (){
+              print('gestur di click');
+            },
+            child: Text('Hello World', 
+            style: GoogleFonts.poppins(
+              fontWeight: FontWeight.bold, 
+              fontSize: 24, 
+              color: Colors.brown,
+            )
+            ),
+          ),
+          Text('Saat ini saya menggunakan aplikasi mengunakan framework flutter', 
+          style: GoogleFonts.poppins(
+            fontSize: 24, 
+          ),
+          textAlign: TextAlign.justify,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          ),
+      
+        Icon(
+          EvaIcons.compass,
+          size: 100,
+          color: Colors.red,
+        ),
+
+        Image.asset('assets/kucing.jpg'),
+
+        Container(
+          color: Colors.blue,
+          margin: const EdgeInsets.all(30.0),
+          padding: const EdgeInsets.all(10.0),
+          child: Image.network(
+            'https://res.cloudinary.com/dk0z4ums3/image/upload/v1661753020/attached_image/inilah-cara-merawat-anak-kucing-yang-tepat.jpg',
+            height: 500,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            alignment: Alignment.center,
+            
+            ),
+        ),
+        ElevatedButton(
+          onPressed: (){
+            print('Button Clicked');
+          }, child: const Text('Click Me'),
+          ),
+
+          FilledButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStateProperty.all(Colors.brown),
+              foregroundColor: WidgetStateProperty.all(Colors.white),
+            ),
+            onPressed: (){
+            print('Tombol FilledButton Di Click');
+          }, child: Text('Tombol')
+          ),
+
+          OutlinedButton(
+            onPressed: (){
+              print('outline button di tekan');
+          },
+          style: ButtonStyle(
+            side: WidgetStateProperty.all(BorderSide(color: Colors.red)),
+          ), 
+          child: Text('tombil outline'),
+          ),
+        ],
+
+      ),
+    ),
+   // --- FOOTER DENGAN BOTTOM NAVIGATION BAR ---
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Beranda',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Cari',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Pengaturan',
+          ),
+        ],
+        currentIndex: 0, // Indeks item yang sedang aktif
+        selectedItemColor: const Color.fromARGB(255, 172, 102, 12),
+        onTap: (index) {
+          // Tambahkan logika di sini saat item diklik
+          print('Item yang diklik: $index');
+        },
+      ),
+    );
+  }
+}
+
